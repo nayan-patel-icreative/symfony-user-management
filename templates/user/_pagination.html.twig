@@ -1,0 +1,67 @@
+{# Custom pagination template with beautiful design #}
+
+{% if pageCount > 1 %}
+    <div class="pagination-wrapper">
+        <ul class="pagination pagination-md">
+            {% if first is defined and current != first %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): first})) }}" aria-label="First" title="Go to first page">
+                        <i class="fas fa-angle-double-left"></i>
+                    </a>
+                </li>
+            {% endif %}
+
+            {% if previous is defined %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): previous})) }}" aria-label="Previous" title="Go to previous page">
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for page in pagesInRange %}
+                {% if page != current %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): page})) }}" title="Go to page {{ page }}">{{ page }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item active">
+                        <span class="page-link" title="Current page">{{ page }}</span>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if next is defined %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): next})) }}" aria-label="Next" title="Go to next page">
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </li>
+            {% endif %}
+
+            {% if last is defined and current != last %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): last})) }}" aria-label="Last" title="Go to last page">
+                        <i class="fas fa-angle-double-right"></i>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+        
+        <!-- Page jump functionality -->
+        <div class="mt-2 text-center">
+            <small class="text-muted">
+                Page 
+                <input type="number" 
+                       min="1" 
+                       max="{{ pageCount }}" 
+                       value="{{ current }}" 
+                       class="form-control form-control-sm d-inline-block mx-1" 
+                       style="width: 50px; font-size: 0.75rem;"
+                       id="pageJumpInput"
+                       onchange="window.location.href='{{ path(route, query|merge({(pageParameterName): '__PAGE__'})) }}'.replace('__PAGE__', this.value)">
+                of {{ pageCount }}
+            </small>
+        </div>
+    </div>
+{% endif %}

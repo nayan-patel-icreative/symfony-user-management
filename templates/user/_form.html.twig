@@ -1,0 +1,44 @@
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            {{ form_label(form.name, 'Name', {'label_attr': {'class': 'form-label fw-bold'}}) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Enter your name'}}) }}
+            {{ form_errors(form.name) }}
+        </div>
+
+        <div class="col-md-4 mb-3">
+            {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label fw-bold'}}) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Enter your email address'}}) }}
+            {{ form_errors(form.email) }}
+        </div>
+
+        <div class="col-md-4 mb-3">
+            {{ form_label(form.age, 'Age', {'label_attr': {'class': 'form-label fw-bold'}}) }}
+            {{ form_widget(form.age, {'attr': {'class': 'form-control', 'placeholder': 'Enter your age'}}) }}
+            {{ form_errors(form.age) }}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            {{ form_label(form.avatarFile, 'Avatar', {'label_attr': {'class': 'form-label fw-bold'}}) }}
+            {{ form_widget(form.avatarFile, {'attr': {'class': 'form-control', 'accept': 'image/jpeg,image/png,image/webp'}}) }}
+            {{ form_errors(form.avatarFile) }}
+            <small class="form-text text-muted">
+                <i class="fas fa-info-circle me-1"></i>
+                Upload a JPG, PNG, or WEBP image (max 5MB)
+            </small>
+            
+            {% if user.avatar %}
+                <div class="mt-2">
+                    <small class="text-muted d-block mb-2">Current avatar:</small>
+                    <img src="/uploads/{{ user.avatar }}" alt="Current avatar" class="img-thumbnail" style="max-width: 100px; height: 100px; object-fit: cover;">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <button class="btn btn-success mt-3 action-btn">
+        <i class="fas fa-save"></i> {{ button_label|default('Save') }}
+    </button>
+{{ form_end(form) }}
