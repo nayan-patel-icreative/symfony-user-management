@@ -11,6 +11,14 @@ framework:
         handler_id: null
         cookie_secure: auto
         cookie_samesite: lax
+        storage_factory_id: session.storage.factory.native
+
+    # Translation configuration
+    default_locale: en
+    translator:
+        default_path: '%kernel.project_dir%/translations'
+        fallbacks:
+            - en
 
     #esi: true
     #fragments: true

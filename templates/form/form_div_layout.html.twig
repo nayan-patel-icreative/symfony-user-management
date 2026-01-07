@@ -1,0 +1,34 @@
+{% block form_row %}
+{% spaceless %}
+    {%- if compound -%}
+        {{- block('form_rows') -}}
+    {%- else -%}
+        <div{% with {attr: row_attr|merge({class: (row_attr.class|default('') ~ ' form-group')|trim}) %}{{ block('attributes') }}{% endwith %}>
+            {{- form_label(form) -}}
+            {{- form_widget(form) -}}
+            {{- form_errors(form) -}}
+        </div>
+    {%- endif -%}
+{% endspaceless %}
+
+{% block form_label %}
+{% spaceless %}
+    {% if label is not same as(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({for: id}) %}
+        {% endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif -%}
+        <label{% with {attr: label_attr} %}{{ block('attributes') }}{% endwith %}>
+            {%- if translation_domain is defined -%}
+                {{- label|trans({}, translation_domain) -}}
+            {%- else -%}
+                {{- label|trans -}}
+            {%- endif -%}
+            {%- if required -%}
+                <span class="required" title="This field is required">*</span>
+            {%- endif -%}
+        </label>
+    {%- endif -%}
+{% endspaceless %}

@@ -1,0 +1,28 @@
+HTTP/1.1 302 Found
+Cache-Control: max-age=0, must-revalidate, private
+Content-Type: text/html; charset=utf-8
+Date: Wed, 07 Jan 2026 11:14:57 GMT
+Expires: Wed, 07 Jan 2026 11:14:57 GMT
+Host: localhost:8000
+Location: http://localhost:8000/login
+Set-Cookie: sf_redirect=%7B%22token%22%3A%2294cfe5%22%2C%22route%22%3A%22app_language_switch%22%2C%22method%22%3A%22GET%22%2C%22controller%22%3A%7B%22class%22%3A%22App%5C%5CController%5C%5CLanguageController%22%2C%22method%22%3A%22switchLanguage%22%2C%22file%22%3A%22%5C%2Fvar%5C%2Fwww%5C%2Fhtml%5C%2Fprojects%5C%2Fsymfony-app%5C%2Fsrc%5C%2FController%5C%2FLanguageController.php%22%2C%22line%22%3A14%7D%2C%22status_code%22%3A302%2C%22status_text%22%3A%22Found%22%7D; path=/; httponly; samesite=lax
+Set-Cookie: PHPSESSID=be5kb0ei62hshos5a68hqt4713; path=/; httponly; samesite=lax
+X-Debug-Token: 94cfe5
+X-Debug-Token-Link: http://localhost:8000/_profiler/94cfe5
+X-Powered-By: PHP/8.1.33
+X-Robots-Tag: noindex
+Transfer-Encoding: chunked
+
+HTTP/1.1 200 OK
+Cache-Control: max-age=0, must-revalidate, private
+Content-Type: text/html; charset=UTF-8
+Date: Wed, 07 Jan 2026 11:14:57 GMT
+Expires: Wed, 07 Jan 2026 11:14:57 GMT
+Host: localhost:8000
+Set-Cookie: sf_redirect=deleted; expires=Tue, 07 Jan 2025 11:14:56 GMT; Max-Age=0; path=/; httponly
+X-Debug-Token: cc4a1d
+X-Debug-Token-Link: http://localhost:8000/_profiler/cc4a1d
+X-Powered-By: PHP/8.1.33
+X-Robots-Tag: noindex
+Transfer-Encoding: chunked
+

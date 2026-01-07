@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'register.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-primary">
+                        <i class="fas fa-user-plus me-2"></i>{{ 'register.create_account'|trans }}
+                    </h2>
+                    <p class="text-muted">{{ 'register.join_us'|trans }}</p>
+                </div>
+
+                {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                
+                {% if not registrationForm.vars.valid %}
+                    <div class="alert alert-danger">
+                        <h5><i class="fas fa-exclamation-triangle me-2"></i>{{ 'register.fix_errors'|trans }}</h5>
+                        {{ form_errors(registrationForm) }}
+                    </div>
+                {% endif %}
+                
+                <div class="mb-3">
+                    {% set name_label = 'form.full_name'|trans %}
+                    {{ form_label(registrationForm.name, name_label, {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                    {{ form_widget(registrationForm.name) }}
+                    {% if form_errors(registrationForm.name) %}
+                        <div class="text-danger small mt-1">
+                            {{ form_errors(registrationForm.name) }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    {% set email_label = 'form.email_address'|trans %}
+                    {{ form_label(registrationForm.email, email_label, {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                    {{ form_widget(registrationForm.email) }}
+                    {% if form_errors(registrationForm.email) %}
+                        <div class="text-danger small mt-1">
+                            {{ form_errors(registrationForm.email) }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    {% set password_label = 'form.password'|trans %}
+                    {{ form_label(registrationForm.plainPassword.first, password_label, {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                    <div class="input-group">
+                        {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('registration_form_plainPassword_first')">
+                            <i class="fas fa-eye" id="registration_form_plainPassword_first_icon"></i>
+                        </button>
+                    </div>
+                    {% if form_errors(registrationForm.plainPassword.first) %}
+                        <div class="text-danger small mt-1">
+                            {{ form_errors(registrationForm.plainPassword.first) }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-4">
+                    {% set confirm_password_label = 'form.confirm_password'|trans %}
+                    {{ form_label(registrationForm.plainPassword.second, confirm_password_label, {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                    <div class="input-group">
+                        {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('registration_form_plainPassword_second')">
+                            <i class="fas fa-eye" id="registration_form_plainPassword_second_icon"></i>
+                        </button>
+                    </div>
+                    {% if form_errors(registrationForm.plainPassword.second) %}
+                        <div class="text-danger small mt-1">
+                            {{ form_errors(registrationForm.plainPassword.second) }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-user-plus me-2"></i>{{ 'register.submit'|trans }}
+                    </button>
+                </div>
+
+                {{ form_end(registrationForm) }}
+
+                <div class="text-center mt-4">
+                    <p class="mb-0 text-muted">
+                        {{ 'register.has_account'|trans }}
+                        <a href="{{ path('app_login') }}" class="text-primary text-decoration-none fw-semibold">
+                            {{ 'register.sign_in'|trans }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function togglePassword(fieldId) {
+    const passwordField = document.getElementById(fieldId);
+    const icon = document.getElementById(fieldId + '_icon');
+    
+    if (passwordField) {
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    } else {
+        // Try to find the field by name if ID doesn't work
+        const field = document.querySelector(`[name="${fieldId}"]`);
+        if (field) {
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                field.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    }
+}
+
+// Debug: Log all password field IDs when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const passwordFields = document.querySelectorAll('input[type="password"]');
+    console.log('Password fields found:');
+    passwordFields.forEach(field => {
+        console.log('ID:', field.id, 'Name:', field.name);
+    });
+});
+</script>
+{% endblock %}

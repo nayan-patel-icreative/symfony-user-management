@@ -1,0 +1,77 @@
+# Navigation
+nav.brand: SymfonyApp
+nav.users: Users
+nav.notifications: Notifications
+nav.logout: Logout
+nav.login: Login
+nav.register: Register
+nav.unread_notifications: unread notifications
+
+# Login page
+login.title: Login - Symfony App
+login.welcome_back: Welcome Back
+login.sign_in_to_account: Sign in to your account to continue
+login.email_address: Email Address
+login.email_placeholder: Enter your email
+login.password: Password
+login.password_placeholder: Enter your password
+login.sign_in_button: Sign In
+login.no_account: Don't have an account?
+login.create_account: Create Account
+
+# Register page
+register.title: Register - Symfony App
+register.create_account: Create Account
+register.join_us: Join us today and start managing users
+register.submit: Register
+register.has_account: Already have an account?
+register.sign_in: Sign In
+register.fix_errors: Please fix the following errors:
+register.email_exists: An account with this email already exists.
+register.account_created_success: Account created successfully! Welcome email sent to your address.
+register.account_created_no_email: Account created successfully! However, we couldn't send welcome email. Please check your email settings.
+register.form_errors: Please correct errors in form.
+
+# Flash messages
+flash.success_title: Success!
+flash.error_title: Error!
+flash.warning_title: Warning!
+flash.info_title: Info!
+
+# Form labels
+form.name: Name
+form.email: Email
+form.password: Password
+form.confirm_password: Confirm Password
+form.full_name: Full Name
+form.email_address: Email Address
+
+# Form validation
+form.password_required: Please enter a password
+form.password_min_length: Your password must be at least {{ limit }} characters
+form.password_mismatch: The password fields must match.
+form.name_placeholder: Enter your full name
+form.email_placeholder: Enter your email
+form.password_placeholder: Enter your password
+form.confirm_password_placeholder: Confirm your password
+
+# Common
+common.app_name: Symfony App
+common.welcome: Welcome
+
+# Email templates
+email.welcome_title: Welcome to Symfony App!
+email.hello_user: Hello {{ name }}!
+email.thank_for_registering: Thank you for registering with our Symfony User Management System. Your account has been successfully created and you're now ready to start managing users!
+email.account_details: Your Account Details:
+email.email_label: Email:
+email.account_status_label: Account Status:
+email.active_status: Active
+email.registration_date_label: Registration Date:
+email.sign_in_button: Sign In to Your Account
+email.security_tip: Security Tip:
+email.security_tip_text: Never share your login credentials with anyone. If you didn't create this account, please contact us immediately.
+email.support_text: If you have any questions or need assistance, please don't hesitate to contact our support team.
+email.support_team: Support Team
+email.system_name: Symfony User Management System
+email.auto_message: This is an automated message. Please do not reply to this email.

@@ -1,0 +1,48 @@
+{% block form_row %}
+{% spaceless %}
+    {%- if compound -%}
+        {{- block('form_rows') -}}
+    {%- else -%}
+        {% set row_attr = row_attr|merge({'class': (row_attr.class|default('') ~ ' mb-3')|trim}) %}
+        <div{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+            {{- form_label(form, null, {'label_attr': {'class': 'form-label fw-semibold'}}) -}}
+            {{- form_widget(form) -}}
+            {{- form_errors(form) -}}
+        </div>
+    {%- endif -%}
+{% endspaceless %}
+
+{% block form_label %}
+{% spaceless %}
+    {% if label is not same as(false) -%}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' form-label fw-semibold required')|trim}) %}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif -%}
+        <label{% with {attr: label_attr} %}{{ block('attributes') }}{% endwith %}>
+            {{- label|trans -}}
+            {%- if required -%}
+                <span class="required" title="This field is required">*</span>
+            {%- endif -%}
+        </label>
+    {%- endif -%}
+{% endspaceless %}
+
+{% block form_widget_simple %}
+{% spaceless %}
+    {%- if type is defined and type == 'text' -%}
+        {% set attr = attr|merge({'class': 'form-control'}) %}
+        <input type="text" {{ block('widget_attributes') }}{% if value is not empty %}value="{{ value }}"{% endif %}{% if required %} required="required"{% endif %}>
+    {%- elseif type is defined and type == 'email' -%}
+        {% set attr = attr|merge({'class': 'form-control'}) %}
+        <input type="email" {{ block('widget_attributes') }}{% if value is not empty %}value="{{ value }}"{% endif %}{% if required %} required="required"{% endif %}>
+    {%- elseif type is defined and type == 'password' -%}
+        {% set attr = attr|merge({'class': 'form-control'}) %}
+        <input type="password" {{ block('widget_attributes') }}{% if value is not empty %}value="{{ value }}"{% endif %}{% if required %} required="required"{% endif %}>
+    {%- else -%}
+        {{- block('form_widget') -}}
+    {%- endif -%}
+{% endspaceless %}

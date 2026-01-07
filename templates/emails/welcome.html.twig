@@ -1,0 +1,54 @@
+{% extends 'emails/base.html.twig' %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif;">
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 10px 10px 0 0; text-align: center;">
+        <h1 style="color: white; margin: 0; font-size: 28px;">
+            {{ 'email.welcome_title'|trans }}
+        </h1>
+    </div>
+    
+    <div style="background: #ffffff; padding: 40px 30px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        {{ 'email.hello_user'|trans({'{{ name }}': name}) }}
+        
+        <p style="color: #666; line-height: 1.6; margin-bottom: 20px;">
+            {{ 'email.thank_for_registering'|trans }}
+        </p>
+        
+        <div style="background: #f8f9fa; padding: 20px; border-left: 4px solid #007bff; margin: 20px 0;">
+            {{ 'email.account_details'|trans }}
+            <ul style="color: #666; line-height: 1.6;">
+                <li><strong>{{ 'email.email_label'|trans }}</strong> {{ user_email }}</li>
+                <li><strong>{{ 'email.account_status_label'|trans }}</strong> <span style="color: #28a745;">{{ 'email.active_status'|trans }}</span></li>
+                <li><strong>{{ 'email.registration_date_label'|trans }}</strong> {{ "now"|date("F j, Y, g:i a") }}</li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ login_url }}" style="background: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+                {{ 'email.sign_in_button'|trans }}
+            </a>
+        </div>
+        
+        <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 5px; margin-top: 20px;">
+            <p style="color: #856404; margin: 0; font-size: 14px;">
+                <strong>{{ 'email.security_tip'|trans }}</strong> {{ 'email.security_tip_text'|trans }}
+            </p>
+        </div>
+        
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+            <p style="color: #999; font-size: 14px; margin-bottom: 10px;">
+                {{ 'email.support_text'|trans }}
+            </p>
+            <p style="color: #999; font-size: 14px; margin: 0;">
+                <strong>{{ 'email.support_team'|trans }}</strong><br>
+                {{ 'email.system_name'|trans }}
+            </p>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px; color: #999; font-size: 12px;">
+        <p>{{ 'email.auto_message'|trans }}</p>
+    </div>
+</div>
+{% endblock %}
