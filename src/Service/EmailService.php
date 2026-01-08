@@ -33,7 +33,7 @@ class EmailService
                 ->context([
                     'name' => $userName,
                     'user_email' => $toEmail,
-                    'login_url' => $_ENV['APP_URL'] ?? 'http://127.0.0.1:33175/login'
+                    'login_url' => $_ENV['APP_URL'] ?? 'http://127.0.0.1:41741/login'
                 ]);
 
             $this->mailer->send($email);
